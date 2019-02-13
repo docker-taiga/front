@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INITIAL_SETUP_LOCK=/run/initial_setup.lock
+INITIAL_SETUP_LOCK=/taiga-conf/.initial_setup.lock
 if [ ! -f $INITIAL_SETUP_LOCK ]; then
 	touch $INITIAL_SETUP_LOCK
 	[ "$TAIGA_SCHEME" = 'https' ] && TAIGA_WS_SCHEME=wss || TAIGA_WS_SCHEME=ws
@@ -10,6 +10,8 @@ if [ ! -f $INITIAL_SETUP_LOCK ]; then
 		-i /tmp/taiga-conf/config.json
 	cp /tmp/taiga-conf/config.json /taiga-conf/
 	ln -sf /taiga-conf/config.json /srv/taiga/front/dist/conf.json
+else
+    ln -sf /taiga-conf/config.json /srv/taiga/front/dist/conf.json
 fi
 
 exec nginx -g 'daemon off;'
