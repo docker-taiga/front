@@ -3,6 +3,7 @@ FROM nginx:alpine
 ARG VERSION=5.0.7
 
 ENV TAIGA_HOST=taiga.lan \
+    TAIGA_PORT=80 \
 	TAIGA_SCHEME=http
 
 WORKDIR /srv/taiga
